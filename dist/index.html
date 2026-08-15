@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script>
+      (function () {
+        var t = localStorage.getItem('gaip-theme') || 'dark';
+        var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('light', !dark);
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>GAIP – Geospatial Agriculture Intelligence Platform</title>
+    <meta name="description" content="Empowering decision-makers and field engineers with real-time geospatial intelligence across Egypt." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/assets/index-BdqwDeiK.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CsTyN2wP.css">
+  </head>
+  <body class="font-sans antialiased text-gray-900 bg-white">
+    <div id="root"></div>
+  </body>
+</html>

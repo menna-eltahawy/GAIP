@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+/* =========================================================
+   إعدادات الألوان المتناسقة (مع تغميق الهيدر في اللايت مود)
+========================================================= */
+
+/* 1. إعدادات الـ Dark Mode (الوضع الترابي التكتيكي) */
+:root {
+  color-scheme: dark;
+
+  /* خلفيات الصفحات واللوحات */
+  --color-slate-950: #2C3639; 
+  --color-slate-900: #3F4E4F; /* الهيدر والتابات */
+  --color-slate-850: #364245; 
+  --color-slate-800: #465557; 
+  
+  /* النصوص */
+  --color-slate-100: #DCD7C9; 
+  --color-slate-200: #DCD7C9; 
+  --color-slate-300: #C2BDAF; 
+  --color-slate-400: #9B9587; 
+  --color-slate-500: #746F63;
+  --color-slate-600: #3F4E4F;
+  --color-slate-700: #2C3639;
+  
+  /* الألوان الأساسية والأزرار */
+  --color-emerald-300: #C29572; 
+  --color-emerald-400: #A27B5C; 
+  --color-emerald-450: #A27B5C; 
+  --color-emerald-500: #88654A; 
+  --color-emerald-600: #71523B; 
+  --color-emerald-700: #573E2B;
+  --color-emerald-900: #3D2D21;
+  --color-emerald-950: #291D14; 
+}
+
+/* 2. إعدادات الـ Light Mode (الوضع الفاتح الزراعي) */
+html.light {
+  color-scheme: light;
+
+  /* خلفيات الصفحات واللوحات */
+  --color-slate-950: #FBF5DD; 
+  
+  /* تم تغميق هذا اللون تحديداً ليكون أغمق من E7E1B1 ليبرز الهيدر */
+  --color-slate-900: #D4CD9B; /* الهيدر والتابات - أغمق قليلاً */
+  
+  --color-slate-850: #C6C091; 
+  --color-slate-800: #B8B286; 
+  
+  /* النصوص */
+  --color-slate-100: #0D530E; 
+  --color-slate-200: #146B16; 
+  --color-slate-300: #1C821F; 
+  --color-slate-400: #306D29; 
+  --color-slate-500: #4B9141;
+  --color-slate-600: #E7E1B1;
+  --color-slate-700: #FBF5DD;
+  
+  /* الألوان الأساسية والأزرار */
+  --color-emerald-300: #4B9141; 
+  --color-emerald-400: #306D29; 
+  --color-emerald-450: #306D29; 
+  --color-emerald-500: #245A1E; 
+  --color-emerald-600: #1B4A15; 
+  --color-emerald-700: #12390D;
+  --color-emerald-900: #082105;
+  --color-emerald-950: #E7E1B1; 
+}
+
+/* إصلاح لون الحدود وتبيان النصوص البيضاء في اللايت مود */
+html.light .border-slate-900,
+html.light .border-slate-800 {
+  border-color: #B8B286;
+}
+
+html.light .border-emerald-500\/20,
+html.light .border-emerald-500\/30 {
+  border-color: rgba(48, 109, 41, 0.3);
+}
+
+html.light .text-white,
+html.light .bg-slate-900\/90.text-white,
+html.light .bg-slate-900\/80.text-white,
+html.light .bg-slate-900\/60.text-white {
+  color: #FBF5DD;
+}
+
+html.light .hover\:text-white:hover {
+  color: #FBF5DD;
+}
+
+html.light .leaflet-container {
+  background: #E7E1B1;
+}
+
+html.light .bg-slate-950\/90,
+html.light .bg-slate-950\/80 {
+  background-color: rgba(251, 245, 221, 0.95);
+}

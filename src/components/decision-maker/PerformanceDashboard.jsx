@@ -373,7 +373,6 @@ const PerformanceDashboard = ({ isActive, sharedMetadata }) => {
         }
       `}</style>
 
-      {/* ─── HEADER BAR ─── */}
       <div className="relative z-10 px-8 pt-6 pb-4 border-b border-gray-200 dark:border-slate-800 shrink-0 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="text-start">
@@ -473,7 +472,6 @@ const PerformanceDashboard = ({ isActive, sharedMetadata }) => {
         )}
       </div>
 
-      {/* ─── DASHBOARD BODY ─── */}
       {!sharedMetadata ? (
         <div className="flex-1 flex items-center justify-center relative z-10 p-8">
           <div className="border-[2px] border-dashed border-gray-300 dark:border-slate-700 bg-white/50 dark:bg-slate-900/30 rounded-[2rem] p-16 text-center max-w-xl flex flex-col items-center justify-center gap-5 shadow-sm">
@@ -497,7 +495,7 @@ const PerformanceDashboard = ({ isActive, sharedMetadata }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-[25%_50%_25%] gap-5 min-h-[85vh] pb-8">
 
-            {/* ═══ LEFT COLUMN — Data Tables ═══ */}
+        
             <div className="flex flex-col gap-5 min-h-[400px]">
 
               <div className="h-[220px] bg-white dark:bg-slate-900/60 border border-gray-200 dark:border-slate-800 rounded-2xl shadow-sm flex flex-col overflow-hidden shrink-0">
@@ -563,7 +561,6 @@ const PerformanceDashboard = ({ isActive, sharedMetadata }) => {
               </div>
             </div>
 
-            {/* ═══ CENTER COLUMN — Map + Primary Chart ═══ */}
             <div className="flex flex-col gap-5 min-h-[500px]">
 
               <div className="h-[350px] lg:h-[60%] bg-white dark:bg-slate-900/60 border border-gray-200 dark:border-slate-800 rounded-2xl shadow-sm relative overflow-hidden transition-colors">
@@ -671,7 +668,7 @@ const PerformanceDashboard = ({ isActive, sharedMetadata }) => {
               </div>
             </div>
 
-            {/* ═══ RIGHT COLUMN — Secondary Charts ═══ */}
+        
             <div className="flex flex-col gap-5 min-h-[400px]">
 
               <div className="h-[220px] bg-white dark:bg-slate-900/60 border border-gray-200 dark:border-slate-800 p-5 rounded-2xl shadow-sm flex flex-col shrink-0">

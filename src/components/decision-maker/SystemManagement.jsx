@@ -66,7 +66,7 @@ const SystemManagement = () => {
   return (
     <div className="p-8 space-y-8 bg-slate-950 h-full overflow-y-auto text-slate-100 font-sans relative" dir="ltr">
       
-      {/* Background Neon Grid */}
+    
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#10b981 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
 
       <div className="flex justify-between items-center border-b border-slate-900 pb-4 relative z-10">
@@ -79,7 +79,7 @@ const SystemManagement = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
         
-        {/* PANEL 1: Pending Access Approvals */}
+      
         <section className="bg-slate-900/60 border border-slate-850 p-6 rounded-2xl shadow-xl backdrop-blur-sm text-left flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
@@ -118,7 +118,7 @@ const SystemManagement = () => {
           </div>
         </section>
 
-        {/* PANEL 2: Active User Permissions */}
+        
         <section className="bg-slate-900/60 border border-slate-850 p-6 rounded-2xl shadow-xl backdrop-blur-sm text-left flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">

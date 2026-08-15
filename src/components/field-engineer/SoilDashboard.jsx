@@ -67,7 +67,7 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
   const fetchSensors = async (bounds) => {
     setLoading(true);
     try {
-      // تم التعديل هنا
+      
       let url = `/sensor/sensorswithreadingslastday`;
       if (bounds) {
         url += `?minLat=${bounds.getSouthWest().lat}&minLng=${bounds.getSouthWest().lng}&maxLat=${bounds.getNorthEast().lat}&maxLng=${bounds.getNorthEast().lng}`;
@@ -106,7 +106,7 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
 
   const fetchDetails = async (id) => {
     try {
-      // تم التعديل هنا
+      
       const res = await api.get(`/sensor/details/${id}`);
       setSensorDetails(res.data);
     } catch (err) { console.error(err); }

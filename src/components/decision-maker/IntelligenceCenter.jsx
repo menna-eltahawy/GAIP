@@ -298,7 +298,6 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
   return (
     <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-100 overflow-hidden" dir="ltr">
-      {/* PANEL 2: Live Map Canvas View */}
       <div className="flex-1 h-full relative z-10">
           <MapSection
             center={mapCenter}
@@ -334,7 +333,6 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
             ] : null}
           />
 
-        {/* Floating Drawing Instruction HUD */}
         {!geometry && (
           <div className="absolute top-[12px] left-14 z-[400] bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 text-white rounded-2xl px-6 py-4 flex items-center gap-4 shadow-2xl max-w-md pointer-events-none">
             <div className="bg-emerald-500/10 border border-emerald-500/40 p-2 rounded-xl text-emerald-400 animate-pulse">
@@ -351,7 +349,6 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
       </div>
       
-      {/* PANEL 1: Control & Concept Analytics Panel */}
       <div 
         style={{ width: `${sidebarWidth}px` }}
         className="border-l border-slate-900 bg-slate-950/95 backdrop-blur-lg h-full flex flex-col shrink-0 text-left overflow-y-auto relative z-50 pointer-events-auto" 
@@ -369,7 +366,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
           <p className="text-[10px] text-slate-400 uppercase tracking-widest font-mono">Agricultural Real-Time Telemetry Control</p>
         </div>
 
-        {/* Date Inputs Form */}
+      
         <div className="p-6 border-b border-slate-900 space-y-4">
           <div className="grid grid-cols-2 gap-3 text-slate-300">
             <div className="space-y-1">

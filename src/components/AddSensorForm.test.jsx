@@ -5,7 +5,6 @@ import '@testing-library/jest-dom';
 import api from '../api/axiosConfig';
 import AddSensorForm from './AddSensorForm';
 
-// Mock our custom API instead of axios directly
 vi.mock('../api/axiosConfig', () => ({
   default: {
     post: vi.fn()
@@ -59,13 +58,13 @@ describe('AddSensorForm Component', () => {
 
     fireEvent.change(nameInput, { target: { value: 'Delta Node 01' } });
     
-    // Invalid Latitude
+  
     fireEvent.change(latInput, { target: { value: '120.5' } });
     fireEvent.change(lngInput, { target: { value: '30.2' } });
     fireEvent.click(submitButton);
     expect(screen.getByText('Invalid latitude. Must be between -90 and 90.')).toBeInTheDocument();
 
-    // Invalid Longitude
+  
     fireEvent.change(latInput, { target: { value: '30.5' } });
     fireEvent.change(lngInput, { target: { value: '-220.0' } });
     fireEvent.click(submitButton);

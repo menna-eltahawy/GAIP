@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 import api from '../api/axiosConfig';
 import TelemetryForm from './TelemetryForm';
 
-// Mock our custom API instead of axios directly
+
 vi.mock('../api/axiosConfig', () => ({
   default: {
     post: vi.fn()

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Map, BarChart3, Target, Shield, FolderOpen, FileWarning, Compass, BookOpen } from 'lucide-react';
+import { Map, BarChart3, Target, Shield, FolderOpen, FileWarning, BookOpen } from 'lucide-react';
 
 const TabsNav = ({ activeTab, setActiveTab }) => {
   return (
@@ -88,16 +87,6 @@ const TabsNav = ({ activeTab, setActiveTab }) => {
         <BookOpen className="w-4 h-4 text-emerald-450 [.light_&]:text-[#022A06]" />
         Documentation
       </button>
-      
-      <div className="border-l border-slate-700 mx-2 h-6 self-center"></div>
-
-      <Link 
-        to="/iot-simulator"
-        className="flex items-center gap-2 px-6 py-3.5 font-bold text-xs uppercase tracking-wider transition-all text-slate-400 [.light_&]:text-[#022A06]/70 hover:text-slate-200 [.light_&]:hover:text-[#022A06] hover:bg-slate-850/40 whitespace-nowrap"
-      >
-        <Compass className="w-4 h-4" />
-        IoT Simulator
-      </Link>
     </div>
   );
 };

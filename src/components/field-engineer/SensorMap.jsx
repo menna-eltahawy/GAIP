@@ -119,7 +119,6 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
       const analysisGeometry = [[minLng, minLat], [maxLng, minLat], [maxLng, maxLat], [minLng, maxLat], [minLng, minLat]];
       
       try {
-      
         const res = await api.post(`/sensor/analytics/interpolate`, { geometry: analysisGeometry, buffer_range: 5000 });
         setInterpolationMaps(res.data.maps);
       } catch (err) { alert("Interpolation failed"); } 
@@ -130,8 +129,23 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
   if (!isActive) return null;
 
   return (
-    <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-100 overflow-hidden">
+    <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-100 overflow-hidden sensor-map-container">
       
+      {/* متغيرات الـ CSS لدعم اللايت مود والدارك مود للـ Tooltip */}
+      <style>{`
+        .sensor-map-container {
+          --tooltip-bg: #0f172a;
+          --tooltip-border: #334155;
+          --tooltip-text: #f1f5f9;
+        }
+        :root.light .sensor-map-container, .light .sensor-map-container {
+          --tooltip-bg: #FBF5DD;
+          --tooltip-border: #D4CD9B;
+          --tooltip-text: #0D530E;
+        }
+      `}</style>
+
+      {/* SIDEBAR */}
       <div className="w-96 bg-slate-900/90 backdrop-blur-md border-x border-slate-800 h-full flex flex-col z-30 relative shadow-2xl shrink-0">
         <div className="flex border-b border-slate-800 bg-slate-950/40">
           <button onClick={() => setSidebarTab('catalog')} className={`flex-1 py-4 text-center text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 ${sidebarTab === 'catalog' ? 'border-b-2 border-emerald-500 text-emerald-450 bg-slate-900/10' : 'text-slate-400 hover:text-slate-200'}`}>
@@ -152,14 +166,25 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
               {detailsLoading ? <Loader2 className="animate-spin w-6 h-6 mx-auto text-emerald-500" /> : sensorDetails && (
                 <div className="space-y-4">
                   {sensorDetails.is_critical && (
-                    <div className="bg-red-950/50 border border-red-500 p-3 rounded-lg flex items-center gap-2 text-red-200">
+                    <div className="bg-red-950/50 border border-red-500 p-3 rounded-lg flex items-center gap-2 text-red-200 [.light_&]:bg-red-100 [.light_&]:border-red-400 [.light_&]:text-red-700">
                       <AlertTriangle className="w-5 h-5"/>
                       <span className="text-xs font-bold">Critical Readings Alert</span>
                     </div>
                   )}
                   <div className="h-48">
                     <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={sensorDetails.history}><XAxis dataKey="timestamp" hide /><YAxis hide /><Tooltip contentStyle={{backgroundColor: '#0f172a', border: '1px solid #334155'}}/><Legend /><Line type="monotone" dataKey="temperature" stroke="#f97316" dot={false} /><Line type="monotone" dataKey="soil_moisture" stroke="#3b82f6" dot={false} /><Line type="monotone" dataKey="soil_ph" stroke="#2dd4bf" dot={false} /></LineChart>
+                      <LineChart data={sensorDetails.history}>
+                        <XAxis dataKey="timestamp" hide />
+                        <YAxis hide />
+                        <Tooltip 
+                          contentStyle={{backgroundColor: 'var(--tooltip-bg)', border: '1px solid var(--tooltip-border)', borderRadius: '8px', color: 'var(--tooltip-text)'}}
+                          itemStyle={{color: 'var(--tooltip-text)', fontWeight: 'bold'}}
+                        />
+                        <Legend />
+                        <Line type="monotone" dataKey="temperature" stroke="#f97316" dot={false} />
+                        <Line type="monotone" dataKey="soil_moisture" stroke="#3b82f6" dot={false} />
+                        <Line type="monotone" dataKey="soil_ph" stroke="#2dd4bf" dot={false} />
+                      </LineChart>
                     </ResponsiveContainer>
                   </div>
                 </div>
@@ -182,6 +207,14 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
                   const isSelected = activeSensor?.id === sensor.id;
                   const isCritical = sensor.moisture < 20;
                   const statusColor = isCritical ? 'bg-red-500' : sensor.status === 'Warning' ? 'bg-yellow-500' : 'bg-emerald-500';
+                  
+                  // كلاسات الألوان الفاتحة للحالات المخصصة (حل المشكلة رقم 1)
+                  const badgeClasses = isCritical 
+                    ? 'bg-red-950 [.light_&]:bg-red-100 text-red-400 [.light_&]:text-red-700 border border-red-500/10 [.light_&]:border-red-500/30' 
+                    : sensor.status === 'Warning' 
+                      ? 'bg-yellow-950 [.light_&]:bg-yellow-100 text-yellow-500 [.light_&]:text-yellow-700 border border-yellow-500/10 [.light_&]:border-yellow-500/30' 
+                      : 'bg-emerald-950 text-emerald-450 border border-emerald-500/10';
+
                   return (
                     <div key={sensor.id} onClick={() => setActiveSensor(sensor)} className={`cursor-pointer p-4 rounded-xl border transition-all duration-200 ${isSelected ? 'border-emerald-500/50 bg-slate-900 shadow-md ring-1 ring-emerald-500/30' : 'border-slate-800 bg-slate-900/30 hover:bg-slate-900/50 hover:border-slate-700'}`}>
                       <div className="flex justify-between items-center mb-3">
@@ -189,7 +222,9 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
                           <span className={`w-2.5 h-2.5 rounded-full ${statusColor} ${isCritical ? 'animate-ping' : ''}`}></span>
                           <p className="text-xs font-bold text-slate-200 font-mono">{sensor.name}</p>
                         </div>
-                        <p className={`text-[8px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${isCritical ? 'bg-red-950 text-red-400 border border-red-500/10' : sensor.status === 'Warning' ? 'bg-yellow-950 text-yellow-450 border border-yellow-500/10' : 'bg-emerald-950 text-emerald-450 border border-emerald-500/10'}`}>{isCritical ? 'Critical' : sensor.status}</p>
+                        <p className={`text-[8px] font-bold px-2 py-0.5 rounded uppercase tracking-wider ${badgeClasses}`}>
+                          {isCritical ? 'Critical' : sensor.status}
+                        </p>
                       </div>
                       <div className="grid grid-cols-3 gap-1.5 text-center font-mono">
                         <div className="bg-slate-950 p-2 rounded border border-slate-850"><p className="text-[7.5px] text-slate-500 uppercase tracking-wider">Moist</p><p className={`text-xs font-bold ${isCritical ? 'text-red-400' : 'text-slate-350'}`}>{sensor.moisture}%</p></div>
@@ -221,14 +256,16 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
           {interpolationMaps && (
             <div className="mt-4 space-y-3 bg-slate-950 p-3 rounded-xl border border-slate-800 text-[10px]">
               <p className="font-bold text-slate-400 uppercase tracking-wider">{t('legend')}</p>
-              <div className="space-y-1"><div className="flex items-center justify-between"><span className="capitalize">Moisture</span><input type="checkbox" checked={activeLayers.moisture} onChange={() => toggleLayer('moisture')} /></div><div className="h-2 w-full bg-gradient-to-r from-[#8B4513] via-[#FFFF00] to-[#006400] rounded"></div></div>
-              <div className="space-y-1"><div className="flex items-center justify-between"><span className="capitalize">Temp</span><input type="checkbox" checked={activeLayers.temperature} onChange={() => toggleLayer('temperature')} /></div><div className="h-2 w-full bg-gradient-to-r from-blue-500 via-yellow-400 to-red-500 rounded"></div></div>
+              <div className="space-y-1"><div className="flex items-center justify-between"><span className="capitalize text-slate-200">Moisture</span><input type="checkbox" checked={activeLayers.moisture} onChange={() => toggleLayer('moisture')} /></div><div className="h-2 w-full bg-gradient-to-r from-[#8B4513] via-[#FFFF00] to-[#006400] rounded"></div></div>
+              <div className="space-y-1"><div className="flex items-center justify-between"><span className="capitalize text-slate-200">Temp</span><input type="checkbox" checked={activeLayers.temperature} onChange={() => toggleLayer('temperature')} /></div><div className="h-2 w-full bg-gradient-to-r from-blue-500 via-yellow-400 to-red-500 rounded"></div></div>
+              {/* إضافة التحكم والتدرج اللوني للـ pH */}
+              <div className="space-y-1"><div className="flex items-center justify-between"><span className="capitalize text-slate-200">pH</span><input type="checkbox" checked={activeLayers.ph} onChange={() => toggleLayer('ph')} /></div><div className="h-2 w-full bg-gradient-to-r from-red-500 via-green-500 to-purple-500 rounded"></div></div>
             </div>
           )}
         </div>
       </div>
 
-      
+      {/* MAP CONTAINER */}
       <div className="flex-1 h-full relative z-10">
         <div className="absolute bottom-[24px] right-[74px] z-[500]" dir="ltr">
           <div className="relative">
@@ -282,6 +319,8 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
                     <div className="space-y-2 text-xs font-mono">
                       <div className="flex justify-between items-center"><span className="text-slate-400 font-sans flex items-center gap-1"><Droplets className="w-3.5 h-3.5 text-blue-500"/> رطوبة:</span><span className={`font-bold ${isCritical ? 'text-red-400' : 'text-slate-200'}`}>{sensor.moisture}%</span></div>
                       <div className="flex justify-between items-center"><span className="text-slate-400 font-sans flex items-center gap-1"><Thermometer className="w-3.5 h-3.5 text-orange-500"/> حرارة:</span><span className="font-bold text-slate-200">{sensor.temperature}°C</span></div>
+                      {/* إضافة قراءة الـ pH داخل البوب أب */}
+                      <div className="flex justify-between items-center"><span className="text-slate-400 font-sans flex items-center gap-1"><Beaker className="w-3.5 h-3.5 text-purple-500"/> درجة pH:</span><span className="font-bold text-slate-200">{sensor.ph}</span></div>
                     </div>
                   </div>
                 </Popup>

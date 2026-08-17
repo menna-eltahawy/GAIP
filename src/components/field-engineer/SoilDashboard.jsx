@@ -67,7 +67,6 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
   const fetchSensors = async (bounds) => {
     setLoading(true);
     try {
-      
       let url = `/sensor/sensorswithreadingslastday`;
       if (bounds) {
         url += `?minLat=${bounds.getSouthWest().lat}&minLng=${bounds.getSouthWest().lng}&maxLat=${bounds.getNorthEast().lat}&maxLng=${bounds.getNorthEast().lng}`;
@@ -106,7 +105,6 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
 
   const fetchDetails = async (id) => {
     try {
-      
       const res = await api.get(`/sensor/details/${id}`);
       setSensorDetails(res.data);
     } catch (err) { console.error(err); }
@@ -115,7 +113,7 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
   if (!isActive) return null;
 
   return (
-    <div className="absolute inset-0 bg-slate-950 [.light_&]:bg-[#f9fbf9] p-4 flex flex-col gap-4 text-slate-100 [.light_&]:text-gray-800 transition-colors duration-300 soil-dashboard-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="absolute inset-0 bg-slate-950 [.light_&]:bg-[#FBF5DD] p-4 flex flex-col gap-4 text-slate-100 [.light_&]:text-[#594545] transition-colors duration-300 soil-dashboard-container" dir={lang === 'ar' ? 'rtl' : 'ltr'}>
       <style>{`
         .soil-dashboard-container {
           --c-primary: #fff2d8;    
@@ -129,15 +127,15 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
           --c-primary: #594545;    
           --c-secondary: #815b5b;  
           --c-tertiary: #9e7676;   
-          --c-bg: #ffffff;         
+          --c-bg: #fff8ea;         
           --chart-text: #594545;
           --chart-grid: rgba(89, 69, 69, 0.2);
         }
       `}</style>
 
-      <div className="h-32 bg-slate-900/90 [.light_&]:bg-white rounded-2xl p-3 border border-slate-800 [.light_&]:border-gray-200 overflow-y-auto shadow-sm">
-        <h3 className="text-xs font-bold mb-2 flex items-center gap-2 text-slate-200 [.light_&]:text-[#022A06]">
-          <Activity className="w-3 h-3 text-emerald-400 [.light_&]:text-[#022A06]"/> {t('sessions')}
+      <div className="h-32 bg-slate-900/90 [.light_&]:bg-[#fff8ea] rounded-2xl p-3 border border-slate-800 [.light_&]:border-[#D4CD9B] overflow-y-auto shadow-sm">
+        <h3 className="text-xs font-bold mb-2 flex items-center gap-2 text-slate-200 [.light_&]:text-[#594545]">
+          <Activity className="w-3 h-3 text-emerald-400 [.light_&]:text-[#815b5b]"/> {t('sessions')}
         </h3>
         <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-2">
           {sensors.map(s => {
@@ -146,8 +144,8 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
               <button key={s.sensor_id} onClick={() => setActiveSensor(s)}
                 className={`p-2 rounded-lg border text-start transition-all text-[10px] ${
                   activeSensor?.sensor_id === s.sensor_id 
-                  ? 'border-emerald-500 [.light_&]:border-[#022A06] bg-emerald-500/10 [.light_&]:bg-[#022A06]/10 text-emerald-400 [.light_&]:text-[#022A06] font-black' 
-                  : 'border-slate-800 [.light_&]:border-gray-200 bg-slate-950 [.light_&]:bg-gray-50 text-slate-300 [.light_&]:text-gray-600 hover:border-slate-600'
+                  ? 'border-emerald-500 [.light_&]:border-[#594545] bg-emerald-500/10 [.light_&]:bg-[#594545]/10 text-emerald-400 [.light_&]:text-[#594545] font-black' 
+                  : 'border-slate-800 [.light_&]:border-[#D4CD9B] bg-slate-950 [.light_&]:bg-[#FBF5DD] text-slate-300 [.light_&]:text-[#815b5b] hover:border-slate-600 [.light_&]:hover:border-[#9e7676]'
                 }`}>
                 <p className="font-bold truncate">{s.name}</p>
                 {isCritical && <p className="text-[9px] text-red-500 font-black truncate">{t('critical')}</p>}
@@ -158,7 +156,7 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
       </div>
 
       <div className="flex-1 flex gap-4 overflow-hidden">
-        <div className="w-1/4 bg-slate-900 [.light_&]:bg-white rounded-2xl overflow-hidden border border-slate-800 [.light_&]:border-gray-200 relative shadow-md">
+        <div className="w-1/4 bg-slate-900 [.light_&]:bg-[#fff8ea] rounded-2xl overflow-hidden border border-slate-800 [.light_&]:border-[#D4CD9B] relative shadow-md">
           <MapContainer center={[30.565, 30.932]} zoom={10} className="w-full h-full" zoomControl={false}>
             <TileLayer url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}" />
             {sensors.map(s => (
@@ -179,25 +177,25 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
           </MapContainer>
         </div>
 
-        <div className="flex-1 bg-slate-900/80 [.light_&]:bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-800 [.light_&]:border-gray-200 overflow-y-auto shadow-md">
+        <div className="flex-1 bg-slate-900/80 [.light_&]:bg-[#fff8ea]/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-800 [.light_&]:border-[#D4CD9B] overflow-y-auto shadow-md">
           {activeSensor ? (
             <div className="space-y-6 animate-fade-in">
-              <div className="flex justify-between items-center pb-3 border-b border-slate-850 [.light_&]:border-gray-200">
-                <h2 className="text-xl font-black text-emerald-400 [.light_&]:text-[#022A06]">
+              <div className="flex justify-between items-center pb-3 border-b border-slate-850 [.light_&]:border-[#D4CD9B]">
+                <h2 className="text-xl font-black text-emerald-400 [.light_&]:text-[#594545]">
                   {t('sensor')} {activeSensor.name} 
-                  <span className="text-slate-400 [.light_&]:text-[#022A06]/70 font-normal text-lg"> {t('fullSession')}</span>
+                  <span className="text-slate-400 [.light_&]:text-[#815b5b] font-normal text-lg"> {t('fullSession')}</span>
                 </h2>
-                <button onClick={() => setActiveSensor(null)} className="text-slate-400 hover:text-red-400 transition-colors bg-slate-950 [.light_&]:bg-gray-50 p-1.5 rounded-lg border border-slate-800 [.light_&]:border-gray-200"><X className="w-5 h-5"/></button>
+                <button onClick={() => setActiveSensor(null)} className="text-slate-400 hover:text-red-400 transition-colors bg-slate-950 [.light_&]:bg-[#FBF5DD] p-1.5 rounded-lg border border-slate-800 [.light_&]:border-[#D4CD9B]"><X className="w-5 h-5"/></button>
               </div>
               
               {sensorDetails?.is_critical && (
-                <div className="bg-red-950/40 p-4 rounded-xl flex items-center gap-3 text-red-400 border border-red-500/30">
+                <div className="bg-red-950/40 [.light_&]:bg-red-100 p-4 rounded-xl flex items-center gap-3 text-red-400 [.light_&]:text-red-700 border border-red-500/30 [.light_&]:border-red-400">
                   <AlertTriangle className="w-6 h-6 animate-pulse" />
                   <div><p className="font-bold">{t('criticalAlert')}</p><p className="text-xs opacity-80">{t('inspection')}</p></div>
                 </div>
               )}
 
-              <div className="h-64 bg-slate-950 [.light_&]:bg-white p-4 rounded-xl border border-slate-800 [.light_&]:border-gray-200">
+              <div className="h-64 bg-slate-950 [.light_&]:bg-[#fff8ea] p-4 rounded-xl border border-slate-800 [.light_&]:border-[#D4CD9B]">
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={sensorDetails?.history || []}>
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" opacity={0.6}/>
@@ -214,14 +212,14 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
             </div>
           ) : (
             <div className="space-y-6 animate-fade-in">
-              <h2 className="text-xl font-black text-slate-100 [.light_&]:text-[#022A06] flex items-center gap-2 pb-3 border-b border-slate-850 [.light_&]:border-gray-200">
-                <BarChart2 className="text-emerald-400 [.light_&]:text-[#022A06]"/> {t('globalComp')}
+              <h2 className="text-xl font-black text-slate-100 [.light_&]:text-[#594545] flex items-center gap-2 pb-3 border-b border-slate-850 [.light_&]:border-[#D4CD9B]">
+                <BarChart2 className="text-emerald-400 [.light_&]:text-[#815b5b]"/> {t('globalComp')}
               </h2>
               
               {summaryData && (
                 <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-                  <div className="bg-slate-950 [.light_&]:bg-white p-4 rounded-xl border border-slate-800 [.light_&]:border-gray-200 shadow-sm">
-                    <p className="text-xs font-bold text-slate-400 [.light_&]:text-gray-500 uppercase tracking-wider mb-2">{t('moistComp')}</p>
+                  <div className="bg-slate-950 [.light_&]:bg-[#fff8ea] p-4 rounded-xl border border-slate-800 [.light_&]:border-[#D4CD9B] shadow-sm">
+                    <p className="text-xs font-bold text-slate-400 [.light_&]:text-[#815b5b] uppercase tracking-wider mb-2">{t('moistureComp')}</p>
                     <ResponsiveContainer width="100%" height={250}>
                       <BarChart data={summaryData.all_stats} margin={{top:10, right:10, left:-15, bottom:0}}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" opacity={0.6}/>
@@ -233,8 +231,8 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
                     </ResponsiveContainer>
                   </div>
 
-                  <div className="bg-slate-950 [.light_&]:bg-white p-4 rounded-xl border border-slate-800 [.light_&]:border-gray-200 shadow-sm">
-                    <p className="text-xs font-bold text-slate-400 [.light_&]:text-gray-500 uppercase tracking-wider mb-2">{t('tempPhComp')}</p>
+                  <div className="bg-slate-950 [.light_&]:bg-[#fff8ea] p-4 rounded-xl border border-slate-800 [.light_&]:border-[#D4CD9B] shadow-sm">
+                    <p className="text-xs font-bold text-slate-400 [.light_&]:text-[#815b5b] uppercase tracking-wider mb-2">{t('tempPhComp')}</p>
                     <ResponsiveContainer width="100%" height={250}>
                       <BarChart data={summaryData.all_stats} margin={{top:10, right:10, left:-15, bottom:0}}>
                         <CartesianGrid strokeDasharray="3 3" stroke="var(--chart-grid)" opacity={0.6}/>
@@ -248,17 +246,17 @@ const SoilDashboard = ({ isActive, lang = 'en' }) => {
                     </ResponsiveContainer>
                   </div>
                   
-                  <div className="bg-red-950/30 [.light_&]:bg-red-50 border border-red-500/20 p-4 rounded-xl col-span-full">
+                  <div className="bg-red-950/30 [.light_&]:bg-red-50 border border-red-500/20 [.light_&]:border-red-300 p-4 rounded-xl col-span-full">
                     <p className="text-sm font-black text-red-400 flex items-center gap-2"><AlertTriangle className="w-4 h-4"/> {t('critSensors')} ({summaryData.summary.critical_count})</p>
                     <div className="mt-3 grid grid-cols-2 lg:grid-cols-4 gap-3">
                       {summaryData.summary.critical_sensors.map(s => (
-                        <div key={s.sensor_id} className="bg-red-950/40 [.light_&]:bg-red-100 border border-red-500/10 p-2 rounded-lg">
+                        <div key={s.sensor_id} className="bg-red-950/40 [.light_&]:bg-red-100 border border-red-500/10 [.light_&]:border-red-200 p-2 rounded-lg">
                            <p className="text-xs font-bold text-red-300 [.light_&]:text-red-700 truncate">{s.name}</p>
                            <p className="text-[10px] text-red-400/80 [.light_&]:text-red-600 mt-1">{s.latest_moisture}% Moisture</p>
                         </div>
                       ))}
                       {summaryData.summary.critical_count === 0 && (
-                          <p className="text-xs font-bold text-emerald-400 [.light_&]:text-[#022A06] col-span-full">{t('noCrit')}</p>
+                          <p className="text-xs font-bold text-emerald-400 [.light_&]:text-[#594545] col-span-full">{t('noCrit')}</p>
                       )}
                     </div>
                   </div>

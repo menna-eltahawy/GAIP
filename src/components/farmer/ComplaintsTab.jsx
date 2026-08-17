@@ -168,9 +168,11 @@ const ComplaintsTab = () => {
 
         <div className="relative z-0">
           <MapContainer center={DEFAULT_CENTER} zoom={6} className="h-72 w-full" scrollWheelZoom>
+            {/* استخدام خريطة القمر الصناعي من ايزري هنا بدلاً من OpenStreetMap */}
             <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+              url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              attribution="&copy; ESRI Satellite"
+              maxZoom={20}
             />
             <LocationPicker position={position} onPick={setPosition} />
             <FlyTo position={position} />
@@ -405,7 +407,7 @@ const ComplaintsTab = () => {
                       </div>
                     </div>
 
-              
+                    {/* استجابة المهندس / صانع القرار */}
                     {selectedDetail.Status === 'waiting' ? (
                       <div className="bg-sky-950/20 border border-sky-500/20 rounded-2xl p-4 text-center text-[11px] font-bold text-sky-300">
                         بلاغك قيد الانتظار — سيتم مراجعته من المهندس الزراعي

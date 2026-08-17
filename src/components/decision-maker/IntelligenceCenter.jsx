@@ -298,6 +298,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
   return (
     <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-100 overflow-hidden" dir="ltr">
+      {/* PANEL 2: Live Map Canvas View */}
       <div className="flex-1 h-full relative z-10">
           <MapSection
             center={mapCenter}
@@ -333,6 +334,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
             ] : null}
           />
 
+        {/* Floating Drawing Instruction HUD */}
         {!geometry && (
           <div className="absolute top-[12px] left-14 z-[400] bg-slate-900/90 backdrop-blur-md border border-emerald-500/30 text-white rounded-2xl px-6 py-4 flex items-center gap-4 shadow-2xl max-w-md pointer-events-none">
             <div className="bg-emerald-500/10 border border-emerald-500/40 p-2 rounded-xl text-emerald-400 animate-pulse">
@@ -349,6 +351,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
       </div>
       
+      {/* PANEL 1: Control & Concept Analytics Panel */}
       <div 
         style={{ width: `${sidebarWidth}px` }}
         className="border-l border-slate-900 bg-slate-950/95 backdrop-blur-lg h-full flex flex-col shrink-0 text-left overflow-y-auto relative z-50 pointer-events-auto" 
@@ -366,7 +369,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
           <p className="text-[10px] text-slate-400 uppercase tracking-widest font-mono">Agricultural Real-Time Telemetry Control</p>
         </div>
 
-      
+        {/* Date Inputs Form */}
         <div className="p-6 border-b border-slate-900 space-y-4">
           <div className="grid grid-cols-2 gap-3 text-slate-300">
             <div className="space-y-1">
@@ -419,7 +422,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
               
               <div className="space-y-4">
                 <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-900 pb-2">
-                  🌾 Seasonal Production Indicators
+                  言 Seasonal Production Indicators
                 </h3>
                 
                 <div className="grid grid-cols-1 gap-3">
@@ -449,11 +452,11 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
                       </div>
                     </div>
 
-                    <div className="bg-slate-900 border border-slate-800/60 p-4 rounded-xl flex flex-col justify-between hover:border-cyan-500/20 transition-all text-left relative overflow-hidden">
+                    <div className="bg-slate-900 border border-slate-800/60 p-4 rounded-xl flex flex-col justify-between hover:border-[#9e7676]/30 transition-all text-left relative overflow-hidden">
                       <span className="text-[9px] font-bold text-slate-400 uppercase tracking-widest font-sans">GROWTH STAGE</span>
                       <div className="mt-2 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                        <span className="text-base font-black text-cyan-400 tracking-wide truncate">
+                        <span className="w-2 h-2 rounded-full bg-[#9e7676] animate-pulse" />
+                        <span className="text-base font-black text-[#815b5b] tracking-wide truncate">
                           {getGrowthStage(metrics.dominantCrop, endDate)}
                         </span>
                       </div>
@@ -464,7 +467,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
               <div className="space-y-4">
                 <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-cyan-400" />
+                  <Activity className="w-3.5 h-3.5 text-[#815b5b]" />
                   Vegetation Health (NDVI)
                 </h3>
 
@@ -472,9 +475,9 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
                   <div className="flex justify-between items-center">
                     <span className="text-[10px] text-slate-300 font-bold uppercase tracking-wider">Overall Vitality</span>
                     <span className={`text-sm font-black font-mono px-2 py-0.5 rounded-md ${
-                      metrics.healthIndex > 75 ? 'text-emerald-400 bg-emerald-950/50 border border-emerald-500/20' : 
-                      metrics.healthIndex > 45 ? 'text-yellow-400 bg-yellow-950/50 border border-yellow-500/20' : 
-                      'text-red-400 bg-red-950/50 border border-red-500/20'
+                      metrics.healthIndex > 75 ? 'text-[#fff8ea] bg-[#594545] border border-[#815b5b]' : 
+                      metrics.healthIndex > 45 ? 'text-[#fff8ea] bg-[#815b5b] border border-[#9e7676]' : 
+                      'text-[#594545] bg-[#fff8ea] border border-[#9e7676]'
                     }`}>
                       {metrics.healthIndex}%
                     </span>
@@ -483,9 +486,9 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
                   <div className="w-full bg-slate-950 h-2.5 rounded-full overflow-hidden">
                     <div 
                       className={`h-full rounded-full transition-all duration-1000 ${
-                        metrics.healthIndex > 75 ? 'bg-gradient-to-r from-teal-400 to-emerald-500' :
-                        metrics.healthIndex > 45 ? 'bg-gradient-to-r from-amber-400 to-yellow-500' :
-                        'bg-gradient-to-r from-orange-400 to-red-500'
+                        metrics.healthIndex > 75 ? 'bg-gradient-to-r from-[#9e7676] to-[#594545]' :
+                        metrics.healthIndex > 45 ? 'bg-gradient-to-r from-[#fff8ea] to-[#815b5b]' :
+                        'bg-gradient-to-r from-[#fff8ea] to-[#9e7676]'
                       }`}
                       style={{ width: `${metrics.healthIndex}%` }}
                     />
@@ -493,15 +496,15 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
                   <div className="space-y-2 text-[10px] font-mono border-t border-slate-800 pt-3">
                     <div className="flex justify-between">
-                      <span className="text-slate-400">🟢 High Quality:</span>
+                      <span className="text-slate-400">泙 High Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.highH.toFixed(1)} f ({((metrics.highH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">🟡 Medium Quality:</span>
+                      <span className="text-slate-400">泯 Medium Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.medH.toFixed(1)} f ({((metrics.medH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">🔴 Low Quality:</span>
+                      <span className="text-slate-400">閥 Low Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.lowH.toFixed(1)} f ({((metrics.lowH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                   </div>
@@ -510,28 +513,28 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
               <div className="space-y-4">
                 <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Percent className="w-3.5 h-3.5 text-indigo-400" />
+                  <Percent className="w-3.5 h-3.5 text-[#9e7676]" />
                   Area Distribution
                 </h3>
 
                 <div className="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-4">
                   <div className="w-full bg-slate-950 h-3 rounded-full overflow-hidden flex">
-                    <div style={{ width: `${metrics.wheatPct}%` }} className="bg-emerald-500 h-full" />
-                    <div style={{ width: `${metrics.cornPct}%` }} className="bg-amber-500 h-full" />
-                    <div style={{ width: `${metrics.nonAgriPct}%` }} className="bg-slate-700 h-full" />
+                    <div style={{ width: `${metrics.wheatPct}%` }} className="bg-[#594545] h-full" />
+                    <div style={{ width: `${metrics.cornPct}%` }} className="bg-[#815b5b] h-full" />
+                    <div style={{ width: `${metrics.nonAgriPct}%` }} className="bg-[#9e7676] h-full" />
                   </div>
 
                   <div className="grid grid-cols-3 gap-2 text-[10px] font-mono">
                     <div className="space-y-1 text-center border-r border-slate-800">
-                      <span className="text-emerald-400 font-black text-xs block">{metrics.wheatPct}%</span>
+                      <span className="text-[#594545] font-black text-xs block">{metrics.wheatPct}%</span>
                       <span className="text-slate-500 font-sans uppercase">Wheat</span>
                     </div>
                     <div className="space-y-1 text-center border-r border-slate-800">
-                      <span className="text-amber-400 font-black text-xs block">{metrics.cornPct}%</span>
+                      <span className="text-[#815b5b] font-black text-xs block">{metrics.cornPct}%</span>
                       <span className="text-slate-500 font-sans uppercase">Corn</span>
                     </div>
                     <div className="space-y-1 text-center font-sans uppercase">
-                      <span className="text-slate-400 font-mono font-black text-xs block">{metrics.nonAgriPct}%</span>
+                      <span className="text-[#9e7676] font-mono font-black text-xs block">{metrics.nonAgriPct}%</span>
                       <span className="text-slate-500">Non-Agri</span>
                     </div>
                   </div>

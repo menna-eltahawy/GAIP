@@ -31,7 +31,7 @@ const FarmerDocs = ({ isActive, setActiveTab }) => {
   return (
     <div className="absolute inset-0 bg-[#f9fbf9] dark:bg-slate-950 font-sans text-gray-800 dark:text-slate-100 flex flex-col transition-colors duration-300 overflow-y-auto" dir="rtl">
       
-      {/* نفس الثيم اللوني لضمان التناسق مع باقي المنصة */}
+
       <style>{`
         :root {
           --c-primary: #fff2d8;    
@@ -49,7 +49,6 @@ const FarmerDocs = ({ isActive, setActiveTab }) => {
         }
       `}</style>
 
-      {/* ─── HEADER BAR ─── */}
       <div className="relative z-10 px-6 md:px-8 pt-6 pb-4 border-b border-gray-200 dark:border-slate-800 shrink-0 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="text-start">
@@ -64,10 +63,10 @@ const FarmerDocs = ({ isActive, setActiveTab }) => {
         </div>
       </div>
 
-      {/* ─── DOCS CONTENT ─── */}
+    
       <div className="flex-1 relative z-10 p-6 md:p-8 max-w-5xl mx-auto w-full animate-in fade-in duration-500 pb-24">
         
-        {/* رسالة ترحيبية للمزارع */}
+      
         <div className="mb-8 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-500/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 shadow-sm">
           <div className="bg-emerald-100 dark:bg-emerald-900/50 p-4 rounded-full shrink-0">
             <Wheat className="w-10 h-10 text-emerald-600 dark:text-emerald-400" />
@@ -82,7 +81,7 @@ const FarmerDocs = ({ isActive, setActiveTab }) => {
           </div>
         </div>
 
-        {/* الكروت التوضيحية */}
+      
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {sections.map((section) => {
             const Icon = section.icon;
@@ -107,7 +106,7 @@ const FarmerDocs = ({ isActive, setActiveTab }) => {
           })}
         </div>
         
-        {/* زرار بدء الاستخدام الخاص بالمزارع */}
+      
         <div className="mt-12 flex justify-center">
           <button 
             onClick={() => setActiveTab('complaints')} // يوجه لصفحة الشكاوى كبداية طبيعية

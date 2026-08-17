@@ -236,7 +236,6 @@ const Complaints = ({ isActive }) => {
         <FlyToComplaint target={detail} />
       </MapContainer>
 
-      {/* Map Basemap Switcher UI (Bottom Right next to Chatbot) */}
       <div className="absolute bottom-[20px] right-[74px] z-[500]" dir="ltr">
         <div className="relative">
           <button 
@@ -264,13 +263,11 @@ const Complaints = ({ isActive }) => {
         </div>
       </div>
 
-      {/* Chatbot rendered inside Map bounds at Bottom Right */}
       <Chatbot 
         onDataLoaded={() => {}} 
         buttonPositionClasses="absolute bottom-[20px] right-[20px]"
       />
 
-      {/* Side panel */}
       <div className="absolute top-4 left-4 bottom-4 w-80 max-w-[85vw] bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border border-gray-200 dark:border-slate-800 rounded-2xl flex flex-col overflow-hidden shadow-2xl z-20" dir="ltr">
         <div className="flex items-center gap-2.5 px-4 py-3.5 border-b border-gray-200 dark:border-slate-800">
           <div className="bg-indigo-50 dark:bg-violet-950/50 border border-indigo-200 dark:border-violet-500/30 p-2 rounded-xl">
@@ -333,7 +330,6 @@ const Complaints = ({ isActive }) => {
         </div>
       </div>
 
-      {/* Details modal */}
       {selectedId &&
         createPortal(
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" dir={lang === 'ar' ? 'rtl' : 'ltr'}>

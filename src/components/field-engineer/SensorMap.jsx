@@ -119,7 +119,7 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
       const analysisGeometry = [[minLng, minLat], [maxLng, minLat], [maxLng, maxLat], [minLng, maxLat], [minLng, minLat]];
       
       try {
-        // تم التعديل هنا
+      
         const res = await api.post(`/sensor/analytics/interpolate`, { geometry: analysisGeometry, buffer_range: 5000 });
         setInterpolationMaps(res.data.maps);
       } catch (err) { alert("Interpolation failed"); } 
@@ -131,7 +131,7 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
 
   return (
     <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-100 overflow-hidden">
-      {/* SIDEBAR */}
+      
       <div className="w-96 bg-slate-900/90 backdrop-blur-md border-x border-slate-800 h-full flex flex-col z-30 relative shadow-2xl shrink-0">
         <div className="flex border-b border-slate-800 bg-slate-950/40">
           <button onClick={() => setSidebarTab('catalog')} className={`flex-1 py-4 text-center text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-1.5 ${sidebarTab === 'catalog' ? 'border-b-2 border-emerald-500 text-emerald-450 bg-slate-900/10' : 'text-slate-400 hover:text-slate-200'}`}>
@@ -228,7 +228,7 @@ const SensorMap = ({ isActive, lang = 'en' }) => {
         </div>
       </div>
 
-      {/* MAP CONTAINER */}
+      
       <div className="flex-1 h-full relative z-10">
         <div className="absolute bottom-[24px] right-[74px] z-[500]" dir="ltr">
           <div className="relative">

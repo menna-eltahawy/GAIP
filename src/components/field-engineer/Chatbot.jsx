@@ -29,7 +29,7 @@ const Chatbot = ({ buttonPositionClasses = "absolute bottom-[24px] right-[20px]"
     setLoading(true);
 
     try {
-      // تم التعديل هنا
+
       const res = await api.post(`/api/chatbot/engineer`, { user_message: userText });
       setChatHistory((prev) => [...prev, { sender: "bot", text: res.data.response }]);
     } catch (err) {

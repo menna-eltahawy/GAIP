@@ -126,7 +126,7 @@ const FieldEngineerDocs = ({ isActive, setActiveTab, lang, setLang }) => {
 
         </div>
 
-        {/* تم استبدال التلميحة القديمة بالتلميحة التقنية الجديدة ESRI DLPK Models */}
+      
         <div className="mt-8 bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-500/30 rounded-2xl px-6 py-5 flex items-start gap-4">
           <Sparkles className="w-6 h-6 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
           <div>

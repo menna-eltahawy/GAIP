@@ -49,7 +49,6 @@ const T = {
   }
 };
 
-// استقبال setActiveTab كـ Prop
 const DecisionMakerDocs = ({ isActive, setActiveTab }) => {
   const [lang, setLang] = useState('en');
   const t = (key) => T[lang][key] || key;
@@ -153,7 +152,6 @@ const DecisionMakerDocs = ({ isActive, setActiveTab }) => {
             </p>
           </div>
         </div>        
-        {/* الزرار الجديد لبدء الاستخدام */}
         <div className="mt-12 flex justify-center">
           <button 
             onClick={() => setActiveTab('intelligence')}

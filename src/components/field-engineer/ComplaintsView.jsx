@@ -5,7 +5,7 @@ import L from 'leaflet';
 import { Loader2, MapPin, User, Phone, Leaf, Wrench, ShieldAlert, Check, Landmark, X, FileWarning, CalendarDays, ClipboardCheck, Layers } from 'lucide-react';
 import api, { resolveImageUrl } from '../../api/axiosConfig';
 
-// إعدادات ألوان الحالات (Status) الجذابة
+
 const STATUS_MARKER_CONFIG = {
   'waiting': {
     bgClass: 'bg-sky-500',
@@ -32,7 +32,7 @@ const STATUS_META = {
   'decision_maker': { key: 'decisionMaker', chip: 'bg-violet-50 text-violet-700 border-violet-200 dark:bg-violet-950/40 dark:text-violet-400 dark:border-violet-500/30' },
 };
 
-// قاموس الترجمة
+
 const T = {
   en: {
     title: "Farmer Complaints",
@@ -149,7 +149,6 @@ const ComplaintsView = ({ isActive, lang = 'en' }) => {
   const [actionMsg, setActionMsg] = useState(null);
   const [savingAction, setSavingAction] = useState(false);
 
-  // Basemap State
   const [basemap, setBasemap] = useState('esri');
   const [showBasemapMenu, setShowBasemapMenu] = useState(false);
   const basemaps = [
@@ -173,7 +172,6 @@ const ComplaintsView = ({ isActive, lang = 'en' }) => {
 
   useEffect(() => {
     if (isActive) loadComplaints();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isActive]);
 
   const openDetail = (c) => {
@@ -253,7 +251,7 @@ const ComplaintsView = ({ isActive, lang = 'en' }) => {
         <FlyToComplaint target={detail} />
       </MapContainer>
 
-      {/* Basemap Switcher UI (Bottom Right) */}
+    
       <div className="absolute bottom-[24px] right-[74px] z-[500]" dir="ltr">
         <div className="relative">
           <button 
@@ -278,7 +276,7 @@ const ComplaintsView = ({ isActive, lang = 'en' }) => {
         </div>
       </div>
 
-      {/* Side panel */}
+    
       <div className={`absolute top-4 ${lang === 'ar' ? 'right-4' : 'left-4'} bottom-4 w-80 max-w-[85vw] bg-white/90 dark:bg-slate-950/85 backdrop-blur-md border border-gray-200 dark:border-slate-800 rounded-2xl flex flex-col overflow-hidden shadow-2xl z-20`}>
         <div className="flex items-center gap-2.5 px-4 py-3.5 border-b border-gray-200 dark:border-slate-800">
           <div className="bg-red-50 dark:bg-red-950/50 border border-red-200 dark:border-red-500/30 p-2 rounded-xl">
@@ -350,7 +348,6 @@ const ComplaintsView = ({ isActive, lang = 'en' }) => {
         </div>
       </div>
 
-      {/* Details + solve modal */}
       {selectedId &&
         createPortal(
           <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in" dir={lang === 'ar' ? 'rtl' : 'ltr'}>

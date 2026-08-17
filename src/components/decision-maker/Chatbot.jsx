@@ -192,7 +192,6 @@ const Chatbot = ({
 
   return (
     <>
-      {/* Button with new design matching the image */}
       <div className={`${buttonPositionClasses} z-[9998] pointer-events-none`} dir="ltr">
         <button
           onClick={() => setIsChatOpen(!isChatOpen)}

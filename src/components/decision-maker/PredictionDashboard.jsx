@@ -222,7 +222,6 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
   return (
     <div className="absolute inset-0 flex bg-slate-950 font-sans text-slate-200" dir="ltr">
       
-      {/* 1. Sidebar - Moved to the left (first child in flex container) */}
       <div className="w-96 border-r border-slate-800 bg-slate-950 overflow-y-auto flex flex-col z-20">
         <div className="p-4 border-b border-slate-800 flex justify-between items-center">
           <h2 className="text-lg font-black text-emerald-400">Government Projects</h2>
@@ -243,7 +242,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           </button>
         </div>
 
-        {/* Add Project Form */}
+        
         {showAddProject && (
           <div className="p-3 border-b border-slate-800 bg-slate-900/50 space-y-2 text-[10px]">
             <p className="text-cyan-400 text-[11px] font-bold mb-1">Draw project boundaries on the map</p>
@@ -259,7 +258,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           </div>
         )}
 
-        {/* Projects List */}
+      
         <div className="flex-1 overflow-y-auto p-2 space-y-1">
           {projects.map(p => (
             <div key={p.id}>
@@ -388,7 +387,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           ))}
         </div>
 
-        {/* Results Summary - Single */}
+    
         {areas && !compareData && (
           <div className="border-t border-slate-800 p-3 text-[10px] space-y-1 bg-slate-900/50">
             <p className="text-emerald-400 font-bold mb-1">Areas:</p>
@@ -398,7 +397,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           </div>
         )}
 
-        {/* Results Summary - Compare */}
+      
         {compareData && (
           <div className="border-t border-slate-800 p-3 text-[10px] bg-slate-900/50">
             <p className="text-purple-400 font-bold mb-2">Areas - Comparison:</p>
@@ -437,7 +436,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           </div>
         )}
 
-        {/* Health Results - Single */}
+      
         {health && !compareData && (
           <div className="border-t border-slate-800 p-3 text-[10px] space-y-1 bg-slate-900/50">
             <p className="text-cyan-400 font-bold mb-1">Vegetation Health:</p>
@@ -447,7 +446,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           </div>
         )}
 
-        {/* Health Results - Compare */}
+      
         {compareData && (
           <div className="border-t border-slate-800 p-3 text-[10px] bg-slate-900/50">
             <p className="text-purple-400 font-bold mb-2">Health - Comparison:</p>
@@ -487,7 +486,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
         )}
       </div>
 
-      {/* 2. Map - Moved to the right (second child in flex container) */}
+    
       <div className="flex-1 h-full relative z-10">
         <MapSection
           center={mapCenter}
@@ -527,7 +526,7 @@ const PredictionDashboard = ({ isActive, sharedMetadata }) => {
           compareLoading={loading && compareSelection.length === 2}
         />
         
-        {/* Chatbot positioned bottom right correctly utilizing MapSection defaults implicitly */}
+    
         <Chatbot onDataLoaded={handleChatbotData} />
       </div>
 

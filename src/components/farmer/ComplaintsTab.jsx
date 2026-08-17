@@ -405,7 +405,7 @@ const ComplaintsTab = () => {
                       </div>
                     </div>
 
-                    {/* استجابة المهندس / صانع القرار */}
+              
                     {selectedDetail.Status === 'waiting' ? (
                       <div className="bg-sky-950/20 border border-sky-500/20 rounded-2xl p-4 text-center text-[11px] font-bold text-sky-300">
                         بلاغك قيد الانتظار — سيتم مراجعته من المهندس الزراعي

@@ -422,7 +422,7 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
               
               <div className="space-y-4">
                 <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-wider border-b border-slate-900 pb-2">
-                  言 Seasonal Production Indicators
+                  📊 Seasonal Production Indicators
                 </h3>
                 
                 <div className="grid grid-cols-1 gap-3">
@@ -496,15 +496,15 @@ const IntelligenceCenter = forwardRef(({ isActive, onAnalysisComplete }, ref) =>
 
                   <div className="space-y-2 text-[10px] font-mono border-t border-slate-800 pt-3">
                     <div className="flex justify-between">
-                      <span className="text-slate-400">泙 High Quality:</span>
+                      <span className="text-slate-400">🟢 High Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.highH.toFixed(1)} f ({((metrics.highH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">泯 Medium Quality:</span>
+                      <span className="text-slate-400">🟡 Medium Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.medH.toFixed(1)} f ({((metrics.medH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-slate-400">閥 Low Quality:</span>
+                      <span className="text-slate-400">🔴 Low Quality:</span>
                       <span className="text-slate-200 font-bold">{metrics.lowH.toFixed(1)} f ({((metrics.lowH / metrics.totalH) * 100).toFixed(0)}%)</span>
                     </div>
                   </div>
